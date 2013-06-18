@@ -64,8 +64,8 @@ type
     abcFast
   );
 
-  TAirenceControlSignalChangeCallbackProc = procedure(signal: integer; state: boolean); stdcall;
-  TAirenceEncoderChangeCallbackProc = procedure(direction: integer; abs_value: byte); stdcall;
+  TAirenceControlSignalChangeCallbackProc = procedure(signal: integer; state: boolean; data: pointer); stdcall;
+  TAirenceEncoderChangeCallbackProc = procedure(direction: integer; abs_value: byte; data: pointer); stdcall;
 
   TLEDStatus = record
     Color: TAirenceColor;
@@ -170,6 +170,7 @@ type
 var
   SimulatorMainForm: TSimulatorMainForm;
   ControlSignalChangeCallback: TAirenceControlSignalChangeCallbackProc;
+  ControlSignalChangeCallbackData: pointer;
 
 implementation
 
@@ -181,7 +182,7 @@ begin
   with TSpeedButton(Sender) do begin
     fSignals[Tag] := true;
     if assigned(ControlSignalChangeCallback) then
-      ControlSignalChangeCallback(Tag, true);
+      ControlSignalChangeCallback(Tag, true, ControlSignalChangeCallbackData);
   end;
 end;
 
@@ -191,7 +192,7 @@ begin
   with TSpeedButton(Sender) do begin
     fSignals[Tag] := false;
     if assigned(ControlSignalChangeCallback) then
-      ControlSignalChangeCallback(Tag, false);
+      ControlSignalChangeCallback(Tag, false, ControlSignalChangeCallbackData);
   end;
 end;
 
@@ -200,7 +201,7 @@ begin
   with TSpeedButton(Sender) do begin
     fSignals[GroupIndex] := Down;
     if assigned(ControlSignalChangeCallback) then
-      ControlSignalChangeCallback(GroupIndex, Down);
+      ControlSignalChangeCallback(GroupIndex, Down, ControlSignalChangeCallbackData);
   end;
 end;
 

@@ -71,9 +71,10 @@ begin
   Result := nil;
 end;
 
-procedure airenceSetControlSignalChangeCB(callback: TAirenceControlSignalChangeCallbackProc); stdcall; export;
+procedure airenceSetControlSignalChangeCB(callback: TAirenceControlSignalChangeCallbackProc; data: pointer); stdcall; export;
 begin
   ControlSignalChangeCallback := callback;
+  ControlSignalChangeCallbackData := data;
 end;
 
 procedure airenceClearControlSignalChangeCB; stdcall; export;
@@ -81,7 +82,7 @@ begin
   ControlSignalChangeCallback := nil;
 end;
 
-procedure airenceSetEncoderChangeCB(callback: TAirenceEncoderChangeCallbackProc); stdcall; export;
+procedure airenceSetEncoderChangeCB(callback: TAirenceEncoderChangeCallbackProc; data: pointer); stdcall; export;
 begin
 end;
 
