@@ -579,7 +579,6 @@ object SimulatorMainForm: TSimulatorMainForm
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitLeft = 4
       object btnButton1: TSpeedButton
         Tag = 1
         AlignWithMargins = True
@@ -1014,7 +1013,7 @@ object SimulatorMainForm: TSimulatorMainForm
     end
   end
   object Timer1: TTimer
-    Interval = 50
+    Interval = 125
     OnTimer = Timer1Timer
     Left = 544
     Top = 126
