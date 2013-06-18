@@ -171,6 +171,8 @@ var
   SimulatorMainForm: TSimulatorMainForm;
   ControlSignalChangeCallback: TAirenceControlSignalChangeCallbackProc;
   ControlSignalChangeCallbackData: pointer;
+  EncoderChangeCallback: TAirenceEncoderChangeCallbackProc;
+  EncoderChangeCallbackData: pointer;
 
 implementation
 

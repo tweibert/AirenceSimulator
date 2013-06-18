@@ -52,23 +52,87 @@ begin
 end;
 
 function airenceGetRawControlData(data: pointer): integer; stdcall; export;
+var
+  data2: ^byte;
+  delta: byte;
+  i: integer;
 begin
-  // not implemented
+  data2 := data;
+
+  with SimulatorMainForm do begin
+    // Byte 0: Switch 1..8
+    data2^ := 0;
+    delta := 1;
+    for i := AIRENCE_SW_LED_1 to AIRENCE_SW_LED_8 do begin
+      if Signals[i] then data2^ := data2^ or delta;
+      delta := delta shl 1;
+    end;
+    inc(data2);
+
+    // Byte 1: Switch 9..16
+    data2^ := 0;
+    delta := 1;
+    for i := AIRENCE_SW_LED_9 to AIRENCE_SW_LED_16 do begin
+      if Signals[i] then data2^ := data2^ or delta;
+      delta := delta shl 1;
+    end;
+    inc(data2);
+
+    // Byte 2: Switch 17..24
+    data2^ := 0;
+    delta := 1;
+    for i := AIRENCE_SW_LED_17 to AIRENCE_SW_LED_24 do begin
+      if Signals[i] then data2^ := data2^ or delta;
+      delta := delta shl 1;
+    end;
+    inc(data2);
+
+    // Byte 3: Encoder + Nonstop
+    data2^ := 0;
+    delta := 1;
+    for i := AIRENCE_SW_ENCODER to AIRENCE_SW_NONSTOP do begin
+      if Signals[i] then data2^ := data2^ or delta;
+      delta := delta shl 1;
+    end;
+    inc(data2);
+
+    // Byte 4: USB1 + USB2
+    data2^ := 0;
+    delta := 1;
+    for i := AIRENCE_SW_USB1_FADERSTART to AIRENCE_SW_USB2_CUE do begin
+      if Signals[i] then data2^ := data2^ or delta;
+      delta := delta shl 1;
+    end;
+    inc(data2);
+
+    // Byte 5: USB3 + USB4
+    data2^ := 0;
+    delta := 1;
+    for i := AIRENCE_SW_USB3_FADERSTART to AIRENCE_SW_USB4_CUE do begin
+      if Signals[i] then data2^ := data2^ or delta;
+      delta := delta shl 1;
+    end;
+  end;
+
   Result := 0;
 end;
 
 function airenceGetLibraryVersion(var major, minor: integer): PAnsiChar; stdcall; export;
 begin
-  major := 0;
-  minor := 0;
-  Result := nil;
+  if addr(major) <> nil then
+    major := 0;
+  if addr(minor) <> nil then
+    minor := 0;
+  Result := 'Airence Simulator';
 end;
 
 function airenceGetFirmwareVersion(var major, minor: integer): PAnsiChar; stdcall; export;
 begin
-  major := 0;
-  minor := 0;
-  Result := nil;
+  if addr(major) <> nil then
+    major := 0;
+  if addr(minor) <> nil then
+    minor := 0;
+  Result := 'Airence Simulator';
 end;
 
 procedure airenceSetControlSignalChangeCB(callback: TAirenceControlSignalChangeCallbackProc; data: pointer); stdcall; export;
@@ -84,12 +148,14 @@ end;
 
 procedure airenceSetEncoderChangeCB(callback: TAirenceEncoderChangeCallbackProc; data: pointer); stdcall; export;
 begin
+  EncoderChangeCallback := callback;
+  EncoderChangeCallbackData := data;
 end;
 
 procedure  airenceClearEncoderChangeCB; stdcall; export;
 begin
+  EncoderChangeCallback := nil;
 end;
-
 
 exports
   airenceOpen,
