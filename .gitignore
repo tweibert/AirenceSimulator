@@ -1,0 +1,8 @@
+*.dll
+*.exe
+*.dcu
+*.~*
+*.identcache
+*.dsk
+*.*.local
+__history/
