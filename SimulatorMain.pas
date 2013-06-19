@@ -64,8 +64,8 @@ type
     abcFast
   );
 
-  TAirenceControlSignalChangeCallbackProc = procedure(signal: integer; state: boolean; data: pointer); stdcall;
-  TAirenceEncoderChangeCallbackProc = procedure(direction: integer; abs_value: byte; data: pointer); stdcall;
+  TAirenceControlSignalChangeCallbackProc = procedure(signal: integer; state: boolean; data: pointer); cdecl;
+  TAirenceEncoderChangeCallbackProc = procedure(direction: integer; abs_value: byte; data: pointer); cdecl;
 
   TLEDStatus = record
     Color: TAirenceColor;

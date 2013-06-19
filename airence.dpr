@@ -17,31 +17,31 @@ uses
 
 {$R *.res}
 
-function airenceOpen: integer; stdcall; export;
+function airenceOpen: integer; cdecl; export;
 begin
   SimulatorMainForm.Show;
   Result := 0;
 end;
 
-function airenceClose: integer; stdcall; export;
+function airenceClose: integer; cdecl; export;
 begin
   SimulatorMainForm.Hide;
   Result := 0;
 end;
 
-function airenceSetLed(lednr: integer; color: TAirenceColor): integer; stdcall; export;
+function airenceSetLed(lednr: integer; color: TAirenceColor): integer; cdecl; export;
 begin
   SimulatorMainForm.SetLED(lednr, color);
   Result := 0;
 end;
 
-function airenceSetLedBlink(lednr: integer; _on: TAirenceColor; _off: TAirenceColor; speed: TAirenceBlinkSpeed): integer; stdcall; export;
+function airenceSetLedBlink(lednr: integer; _on: TAirenceColor; _off: TAirenceColor; speed: TAirenceBlinkSpeed): integer; cdecl; export;
 begin
   SimulatorMainForm.SetLEDBlink(lednr, _on, _off, speed);
   Result := 0;
 end;
 
-function airenceGetControlSignal(controlsignal: integer; var state: boolean): integer; stdcall; export;
+function airenceGetControlSignal(controlsignal: integer; var state: boolean): integer; cdecl; export;
 begin
   if (controlsignal >= 1) and (controlsignal <= 38) then begin
     state := SimulatorMainForm.Signals[controlsignal];
@@ -51,7 +51,7 @@ begin
     Result := -1;
 end;
 
-function airenceGetRawControlData(data: pointer): integer; stdcall; export;
+function airenceGetRawControlData(data: pointer): integer; cdecl; export;
 var
   data2: ^byte;
   delta: byte;
@@ -117,7 +117,7 @@ begin
   Result := 0;
 end;
 
-function airenceGetLibraryVersion(var major, minor: integer): PAnsiChar; stdcall; export;
+function airenceGetLibraryVersion(var major, minor: integer): PAnsiChar; cdecl; export;
 begin
   if addr(major) <> nil then
     major := 0;
@@ -126,7 +126,7 @@ begin
   Result := 'Airence Simulator';
 end;
 
-function airenceGetFirmwareVersion(var major, minor: integer): PAnsiChar; stdcall; export;
+function airenceGetFirmwareVersion(var major, minor: integer): PAnsiChar; cdecl; export;
 begin
   if addr(major) <> nil then
     major := 0;
@@ -135,24 +135,24 @@ begin
   Result := 'Airence Simulator';
 end;
 
-procedure airenceSetControlSignalChangeCB(callback: TAirenceControlSignalChangeCallbackProc; data: pointer); stdcall; export;
+procedure airenceSetControlSignalChangeCB(callback: TAirenceControlSignalChangeCallbackProc; data: pointer); cdecl; export;
 begin
   ControlSignalChangeCallback := callback;
   ControlSignalChangeCallbackData := data;
 end;
 
-procedure airenceClearControlSignalChangeCB; stdcall; export;
+procedure airenceClearControlSignalChangeCB; cdecl; export;
 begin
   ControlSignalChangeCallback := nil;
 end;
 
-procedure airenceSetEncoderChangeCB(callback: TAirenceEncoderChangeCallbackProc; data: pointer); stdcall; export;
+procedure airenceSetEncoderChangeCB(callback: TAirenceEncoderChangeCallbackProc; data: pointer); cdecl; export;
 begin
   EncoderChangeCallback := callback;
   EncoderChangeCallbackData := data;
 end;
 
-procedure  airenceClearEncoderChangeCB; stdcall; export;
+procedure airenceClearEncoderChangeCB; cdecl; export;
 begin
   EncoderChangeCallback := nil;
 end;
