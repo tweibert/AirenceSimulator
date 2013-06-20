@@ -30,14 +30,26 @@ begin
 end;
 
 function airenceSetLed(lednr: integer; color: TAirenceColor): integer; cdecl; export;
+var
+  i: integer;
 begin
-  SimulatorMainForm.SetLED(lednr, color);
+  if lednr = AIRENCE_LED_ALL then
+    for i := 1 to 16 do
+      SimulatorMainForm.SetLED(i, color)
+  else
+    SimulatorMainForm.SetLED(lednr, color);
   Result := 0;
 end;
 
 function airenceSetLedBlink(lednr: integer; _on: TAirenceColor; _off: TAirenceColor; speed: TAirenceBlinkSpeed): integer; cdecl; export;
+var
+  i: integer;
 begin
-  SimulatorMainForm.SetLEDBlink(lednr, _on, _off, speed);
+  if lednr = AIRENCE_LED_ALL then
+    for i := 1 to 16 do
+      SimulatorMainForm.SetLEDBlink(i, _on, _off, speed)
+  else
+    SimulatorMainForm.SetLEDBlink(lednr, _on, _off, speed);
   Result := 0;
 end;
 
