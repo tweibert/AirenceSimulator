@@ -34,7 +34,7 @@ var
   i: integer;
 begin
   if lednr = AIRENCE_LED_ALL then
-    for i := 1 to 16 do
+    for i := 1 to 24 do
       SimulatorMainForm.SetLED(i, color)
   else
     SimulatorMainForm.SetLED(lednr, color);
@@ -46,7 +46,7 @@ var
   i: integer;
 begin
   if lednr = AIRENCE_LED_ALL then
-    for i := 1 to 16 do
+    for i := 1 to 24 do
       SimulatorMainForm.SetLEDBlink(i, _on, _off, speed)
   else
     SimulatorMainForm.SetLEDBlink(lednr, _on, _off, speed);
