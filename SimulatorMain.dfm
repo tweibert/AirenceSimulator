@@ -56,7 +56,7 @@ object SimulatorMainForm: TSimulatorMainForm
         AllowAllUp = True
         GroupIndex = 28
         Caption = 'ON'
-        OnClick = btnUSB1CueClick
+        OnClick = btnUSB1OnClick
         ExplicitWidth = 81
       end
       object btnUSB1Fader: TSpeedButton
@@ -69,7 +69,7 @@ object SimulatorMainForm: TSimulatorMainForm
         AllowAllUp = True
         GroupIndex = 27
         Caption = 'FADER'
-        OnClick = btnUSB1CueClick
+        OnClick = btnUSB1FaderClick
         ExplicitWidth = 81
       end
     end
@@ -105,7 +105,7 @@ object SimulatorMainForm: TSimulatorMainForm
         AllowAllUp = True
         GroupIndex = 31
         Caption = 'ON'
-        OnClick = btnUSB1CueClick
+        OnClick = btnUSB2OnClick
         ExplicitWidth = 81
       end
       object btnUSB2Fader: TSpeedButton
@@ -118,7 +118,7 @@ object SimulatorMainForm: TSimulatorMainForm
         AllowAllUp = True
         GroupIndex = 30
         Caption = 'FADER'
-        OnClick = btnUSB1CueClick
+        OnClick = btnUSB2FaderClick
         ExplicitWidth = 81
       end
     end
@@ -154,7 +154,7 @@ object SimulatorMainForm: TSimulatorMainForm
         AllowAllUp = True
         GroupIndex = 34
         Caption = 'ON'
-        OnClick = btnUSB1CueClick
+        OnClick = btnUSB3OnClick
         ExplicitWidth = 81
       end
       object btnUSB3Fader: TSpeedButton
@@ -167,7 +167,7 @@ object SimulatorMainForm: TSimulatorMainForm
         AllowAllUp = True
         GroupIndex = 33
         Caption = 'FADER'
-        OnClick = btnUSB1CueClick
+        OnClick = btnUSB3FaderClick
         ExplicitLeft = 3
       end
     end
@@ -203,7 +203,7 @@ object SimulatorMainForm: TSimulatorMainForm
         AllowAllUp = True
         GroupIndex = 37
         Caption = 'ON'
-        OnClick = btnUSB1CueClick
+        OnClick = btnUSB4OnClick
         ExplicitWidth = 81
       end
       object btnUSB4Fader: TSpeedButton
@@ -216,7 +216,7 @@ object SimulatorMainForm: TSimulatorMainForm
         AllowAllUp = True
         GroupIndex = 36
         Caption = 'FADER'
-        OnClick = btnUSB1CueClick
+        OnClick = btnUSB4FaderClick
         ExplicitWidth = 81
       end
     end

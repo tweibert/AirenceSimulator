@@ -153,6 +153,14 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure btnPushButtonUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure btnUSB1FaderClick(Sender: TObject);
+    procedure btnUSB1OnClick(Sender: TObject);
+    procedure btnUSB2OnClick(Sender: TObject);
+    procedure btnUSB3OnClick(Sender: TObject);
+    procedure btnUSB4OnClick(Sender: TObject);
+    procedure btnUSB2FaderClick(Sender: TObject);
+    procedure btnUSB3FaderClick(Sender: TObject);
+    procedure btnUSB4FaderClick(Sender: TObject);
   private
     fSignals: array[1..38] of boolean;
     fLEDs: array[1..24] of TShape;
@@ -205,6 +213,106 @@ begin
     if assigned(ControlSignalChangeCallback) then
       ControlSignalChangeCallback(GroupIndex, Down, ControlSignalChangeCallbackData);
   end;
+end;
+
+procedure TSimulatorMainForm.btnUSB1FaderClick(Sender: TObject);
+begin
+  // only switch signal if btnUSB1On is also down
+  if btnUSB1On.Down then begin
+    fSignals[AIRENCE_SW_USB1_FADERSTART] := btnUSB1Fader.Down;
+    if assigned(ControlSignalChangeCallback) then
+      ControlSignalChangeCallback(AIRENCE_SW_USB1_FADERSTART, btnUSB1Fader.Down, ControlSignalChangeCallbackData);
+  end;
+end;
+
+procedure TSimulatorMainForm.btnUSB1OnClick(Sender: TObject);
+var
+  lastState: boolean;
+begin
+  fSignals[AIRENCE_SW_USB1_ON] := btnUSB1On.Down;
+  if assigned(ControlSignalChangeCallback) then
+    ControlSignalChangeCallback(AIRENCE_SW_USB1_ON, btnUSB1On.Down, ControlSignalChangeCallbackData);
+
+  // also switch faderstart if necessary
+  lastState := fSignals[AIRENCE_SW_USB1_FADERSTART];
+  fSignals[AIRENCE_SW_USB1_FADERSTART] := btnUSB1On.Down and btnUSB1Fader.Down;
+  if (fSignals[AIRENCE_SW_USB1_FADERSTART] <> lastState) and assigned(ControlSignalChangeCallback) then
+    ControlSignalChangeCallback(AIRENCE_SW_USB1_FADERSTART, fSignals[AIRENCE_SW_USB1_FADERSTART], ControlSignalChangeCallbackData);
+end;
+
+procedure TSimulatorMainForm.btnUSB2FaderClick(Sender: TObject);
+begin
+  // only switch signal if btnUSB2On is also down
+  if btnUSB2On.Down then begin
+    fSignals[AIRENCE_SW_USB2_FADERSTART] := btnUSB2Fader.Down;
+    if assigned(ControlSignalChangeCallback) then
+      ControlSignalChangeCallback(AIRENCE_SW_USB2_FADERSTART, btnUSB2Fader.Down, ControlSignalChangeCallbackData);
+  end;
+end;
+
+procedure TSimulatorMainForm.btnUSB2OnClick(Sender: TObject);
+var
+  lastState: boolean;
+begin
+  fSignals[AIRENCE_SW_USB2_ON] := btnUSB2On.Down;
+  if assigned(ControlSignalChangeCallback) then
+    ControlSignalChangeCallback(AIRENCE_SW_USB2_ON, btnUSB2On.Down, ControlSignalChangeCallbackData);
+
+  // also switch faderstart if necessary
+  lastState := fSignals[AIRENCE_SW_USB2_FADERSTART];
+  fSignals[AIRENCE_SW_USB2_FADERSTART] := btnUSB2On.Down and btnUSB2Fader.Down;
+  if (fSignals[AIRENCE_SW_USB2_FADERSTART] <> lastState) and assigned(ControlSignalChangeCallback) then
+    ControlSignalChangeCallback(AIRENCE_SW_USB2_FADERSTART, fSignals[AIRENCE_SW_USB2_FADERSTART], ControlSignalChangeCallbackData);
+end;
+
+procedure TSimulatorMainForm.btnUSB3FaderClick(Sender: TObject);
+begin
+  // only switch signal if btnUSB3On is also down
+  if btnUSB3On.Down then begin
+    fSignals[AIRENCE_SW_USB3_FADERSTART] := btnUSB3Fader.Down;
+    if assigned(ControlSignalChangeCallback) then
+      ControlSignalChangeCallback(AIRENCE_SW_USB3_FADERSTART, btnUSB3Fader.Down, ControlSignalChangeCallbackData);
+  end;
+end;
+
+procedure TSimulatorMainForm.btnUSB3OnClick(Sender: TObject);
+var
+  lastState: boolean;
+begin
+  fSignals[AIRENCE_SW_USB3_ON] := btnUSB3On.Down;
+  if assigned(ControlSignalChangeCallback) then
+    ControlSignalChangeCallback(AIRENCE_SW_USB3_ON, btnUSB3On.Down, ControlSignalChangeCallbackData);
+
+  // also switch faderstart if necessary
+  lastState := fSignals[AIRENCE_SW_USB3_FADERSTART];
+  fSignals[AIRENCE_SW_USB3_FADERSTART] := btnUSB3On.Down and btnUSB3Fader.Down;
+  if (fSignals[AIRENCE_SW_USB3_FADERSTART] <> lastState) and assigned(ControlSignalChangeCallback) then
+    ControlSignalChangeCallback(AIRENCE_SW_USB3_FADERSTART, fSignals[AIRENCE_SW_USB3_FADERSTART], ControlSignalChangeCallbackData);
+end;
+
+procedure TSimulatorMainForm.btnUSB4FaderClick(Sender: TObject);
+begin
+  // only switch signal if btnUSB4On is also down
+  if btnUSB4On.Down then begin
+    fSignals[AIRENCE_SW_USB4_FADERSTART] := btnUSB4Fader.Down;
+    if assigned(ControlSignalChangeCallback) then
+      ControlSignalChangeCallback(AIRENCE_SW_USB4_FADERSTART, btnUSB4Fader.Down, ControlSignalChangeCallbackData);
+  end;
+end;
+
+procedure TSimulatorMainForm.btnUSB4OnClick(Sender: TObject);
+var
+  lastState: boolean;
+begin
+  fSignals[AIRENCE_SW_USB4_ON] := btnUSB4On.Down;
+  if assigned(ControlSignalChangeCallback) then
+    ControlSignalChangeCallback(AIRENCE_SW_USB4_ON, btnUSB4On.Down, ControlSignalChangeCallbackData);
+
+  // also switch faderstart if necessary
+  lastState := fSignals[AIRENCE_SW_USB4_FADERSTART];
+  fSignals[AIRENCE_SW_USB4_FADERSTART] := btnUSB4On.Down and btnUSB4Fader.Down;
+  if (fSignals[AIRENCE_SW_USB4_FADERSTART] <> lastState) and assigned(ControlSignalChangeCallback) then
+    ControlSignalChangeCallback(AIRENCE_SW_USB4_FADERSTART, fSignals[AIRENCE_SW_USB4_FADERSTART], ControlSignalChangeCallbackData);
 end;
 
 procedure TSimulatorMainForm.FormCreate(Sender: TObject);
