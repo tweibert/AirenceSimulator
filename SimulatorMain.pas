@@ -149,8 +149,8 @@ type
     btnUSB4Cue: TSpeedButton;
     btnUSB4On: TSpeedButton;
     btnEncoder: TSpeedButton;
-    SpeedButton2: TSpeedButton;
-    procedure btnUSB1CueClick(Sender: TObject);
+    btnNonstop: TSpeedButton;
+    procedure SwitchButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure btnPushButtonDown(Sender: TObject; Button: TMouseButton;
@@ -210,7 +210,7 @@ begin
   end;
 end;
 
-procedure TSimulatorMainForm.btnUSB1CueClick(Sender: TObject);
+procedure TSimulatorMainForm.SwitchButtonClick(Sender: TObject);
 begin
   with TSpeedButton(Sender) do begin
     fSignals[GroupIndex] := Down;

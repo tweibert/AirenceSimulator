@@ -43,7 +43,7 @@ object SimulatorMainForm: TSimulatorMainForm
         AllowAllUp = True
         GroupIndex = 29
         Caption = 'CUE'
-        OnClick = btnUSB1CueClick
+        OnClick = SwitchButtonClick
         ExplicitWidth = 81
       end
       object btnUSB1On: TSpeedButton
@@ -92,7 +92,7 @@ object SimulatorMainForm: TSimulatorMainForm
         AllowAllUp = True
         GroupIndex = 32
         Caption = 'CUE'
-        OnClick = btnUSB1CueClick
+        OnClick = SwitchButtonClick
         ExplicitWidth = 81
       end
       object btnUSB2On: TSpeedButton
@@ -141,7 +141,7 @@ object SimulatorMainForm: TSimulatorMainForm
         AllowAllUp = True
         GroupIndex = 35
         Caption = 'CUE'
-        OnClick = btnUSB1CueClick
+        OnClick = SwitchButtonClick
         ExplicitWidth = 81
       end
       object btnUSB3On: TSpeedButton
@@ -203,7 +203,7 @@ object SimulatorMainForm: TSimulatorMainForm
         AllowAllUp = True
         GroupIndex = 38
         Caption = 'CUE'
-        OnClick = btnUSB1CueClick
+        OnClick = SwitchButtonClick
         ExplicitLeft = 10
         ExplicitTop = 26
       end
@@ -231,9 +231,6 @@ object SimulatorMainForm: TSimulatorMainForm
       Align = alClient
       Caption = 'Encoder'
       TabOrder = 4
-      ExplicitLeft = 6
-      ExplicitTop = 6
-      ExplicitWidth = 626
       object btnEncoder: TSpeedButton
         Tag = 25
         AlignWithMargins = True
@@ -249,7 +246,7 @@ object SimulatorMainForm: TSimulatorMainForm
         ExplicitLeft = 0
         ExplicitTop = 56
       end
-      object SpeedButton2: TSpeedButton
+      object btnNonstop: TSpeedButton
         AlignWithMargins = True
         Left = 5
         Top = 128
@@ -259,7 +256,7 @@ object SimulatorMainForm: TSimulatorMainForm
         AllowAllUp = True
         GroupIndex = 26
         Caption = 'NONSTOP'
-        OnClick = btnUSB4OnClick
+        OnClick = SwitchButtonClick
         ExplicitLeft = 3
         ExplicitTop = 136
       end
@@ -274,7 +271,6 @@ object SimulatorMainForm: TSimulatorMainForm
         Frequency = 8
         TabOrder = 0
         OnChange = tbEncoderChange
-        ExplicitWidth = 616
       end
     end
   end
