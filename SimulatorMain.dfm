@@ -260,6 +260,34 @@ object SimulatorMainForm: TSimulatorMainForm
         ExplicitLeft = 3
         ExplicitTop = 136
       end
+      object btnEncoderMinus: TSpeedButton
+        Tag = 23
+        AlignWithMargins = True
+        Left = 5
+        Top = 53
+        Width = 24
+        Height = 18
+        Margins.Top = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        Caption = '-'
+        OnClick = btnEncoderMinusClick
+        ExplicitLeft = 3
+      end
+      object btnEncoderPlus: TSpeedButton
+        Tag = 23
+        AlignWithMargins = True
+        Left = 97
+        Top = 53
+        Width = 24
+        Height = 18
+        Margins.Top = 0
+        Margins.Bottom = 0
+        Align = alRight
+        Caption = '+'
+        OnClick = btnEncoderPlusClick
+        ExplicitLeft = 55
+      end
       object tbEncoder: TTrackBar
         AlignWithMargins = True
         Left = 5

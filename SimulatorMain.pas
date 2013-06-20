@@ -150,6 +150,8 @@ type
     btnUSB4On: TSpeedButton;
     btnEncoder: TSpeedButton;
     btnNonstop: TSpeedButton;
+    btnEncoderMinus: TSpeedButton;
+    btnEncoderPlus: TSpeedButton;
     procedure SwitchButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
@@ -166,6 +168,8 @@ type
     procedure btnUSB3FaderClick(Sender: TObject);
     procedure btnUSB4FaderClick(Sender: TObject);
     procedure tbEncoderChange(Sender: TObject);
+    procedure btnEncoderMinusClick(Sender: TObject);
+    procedure btnEncoderPlusClick(Sender: TObject);
   private
     fSignals: array[1..38] of boolean;
     fLEDs: array[1..24] of TShape;
@@ -189,6 +193,21 @@ var
 implementation
 
 {$R *.dfm}
+
+uses
+  Math;
+
+procedure TSimulatorMainForm.btnEncoderMinusClick(Sender: TObject);
+begin
+  with tbEncoder do
+    Position := EnsureRange(Position - 1, Min, Max);
+end;
+
+procedure TSimulatorMainForm.btnEncoderPlusClick(Sender: TObject);
+begin
+  with tbEncoder do
+    Position := EnsureRange(Position + 1, Min, Max);
+end;
 
 procedure TSimulatorMainForm.btnPushButtonDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
