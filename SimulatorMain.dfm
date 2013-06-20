@@ -1070,7 +1070,7 @@ object SimulatorMainForm: TSimulatorMainForm
     end
   end
   object Timer1: TTimer
-    Interval = 125
+    Interval = 200
     OnTimer = Timer1Timer
     Left = 400
     Top = 118

@@ -406,9 +406,9 @@ begin
         c := Color
       else begin
         case BlinkSpeed of
-          abcSlow: isOn := (GetTickCount div 1000 mod 2) = 0;
-          abcNormal: isOn := (GetTickCount div 500 mod 2) = 0;
-          abcFast: isOn := (GetTickCount div 250 mod 2) = 0;
+          abcSlow: isOn := (GetTickCount div 800 mod 2) = 0;
+          abcNormal: isOn := (GetTickCount div 400 mod 2) = 0;
+          abcFast: isOn := (GetTickCount div 200 mod 2) = 0;
         end;
         if isOn then c := BlinkOnColor else c := BlinkOffColor;
       end;
