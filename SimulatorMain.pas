@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Buttons, StdCtrls, ExtCtrls;
+  Dialogs, Buttons, StdCtrls, ExtCtrls, Vcl.ComCtrls;
 
 
 const
@@ -92,8 +92,6 @@ type
     btnUSB3On: TSpeedButton;
     btnUSB3Fader: TSpeedButton;
     gbUSB4: TGroupBox;
-    btnUSB4Cue: TSpeedButton;
-    btnUSB4On: TSpeedButton;
     btnUSB4Fader: TSpeedButton;
     pnlLEDs: TPanel;
     shLED1: TShape;
@@ -146,6 +144,12 @@ type
     btnButton22: TSpeedButton;
     btnButton23: TSpeedButton;
     btnButton24: TSpeedButton;
+    gbEncoder: TGroupBox;
+    tbEncoder: TTrackBar;
+    btnUSB4Cue: TSpeedButton;
+    btnUSB4On: TSpeedButton;
+    btnEncoder: TSpeedButton;
+    SpeedButton2: TSpeedButton;
     procedure btnUSB1CueClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
@@ -161,18 +165,18 @@ type
     procedure btnUSB2FaderClick(Sender: TObject);
     procedure btnUSB3FaderClick(Sender: TObject);
     procedure btnUSB4FaderClick(Sender: TObject);
+    procedure tbEncoderChange(Sender: TObject);
   private
     fSignals: array[1..38] of boolean;
     fLEDs: array[1..24] of TShape;
     fLEDStatus: array[1..24] of TLEDStatus;
+    fLastEncoderPosition: integer;
     procedure UpdateLEDs;
   public
     function GetSignal(iIndex: integer): boolean;
     procedure SetLED(iIndex: integer; iColor: TAirenceColor);
     procedure SetLEDBlink(iIndex: integer; iOnColor, iOffColor: TAirenceColor; iSpeed: TAirenceBlinkSpeed);
     property Signals[iIndex: integer]: boolean read GetSignal;
-
-
   end;
 
 var
@@ -368,6 +372,20 @@ begin
     BlinkSpeed := iSpeed;
   end;
   UpdateLEDs;
+end;
+
+procedure TSimulatorMainForm.tbEncoderChange(Sender: TObject);
+var
+  direction: integer;
+begin
+  if assigned(EncoderChangeCallback) then begin
+    if fLastEncoderPosition > tbEncoder.Position then
+      direction := -1
+    else
+      direction := 1;
+    EncoderChangeCallback(direction, byte(tbEncoder.Position), EncoderChangeCallbackData);
+  end;
+  fLastEncoderPosition := tbEncoder.Position;
 end;
 
 procedure TSimulatorMainForm.Timer1Timer(Sender: TObject);

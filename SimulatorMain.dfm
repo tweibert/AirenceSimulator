@@ -180,32 +180,6 @@ object SimulatorMainForm: TSimulatorMainForm
       Align = alLeft
       Caption = 'USB 4'
       TabOrder = 3
-      object btnUSB4Cue: TSpeedButton
-        AlignWithMargins = True
-        Left = 5
-        Top = 18
-        Width = 109
-        Height = 48
-        Align = alTop
-        AllowAllUp = True
-        GroupIndex = 38
-        Caption = 'CUE'
-        OnClick = btnUSB1CueClick
-        ExplicitWidth = 81
-      end
-      object btnUSB4On: TSpeedButton
-        AlignWithMargins = True
-        Left = 5
-        Top = 72
-        Width = 109
-        Height = 48
-        Align = alTop
-        AllowAllUp = True
-        GroupIndex = 37
-        Caption = 'ON'
-        OnClick = btnUSB4OnClick
-        ExplicitWidth = 81
-      end
       object btnUSB4Fader: TSpeedButton
         AlignWithMargins = True
         Left = 5
@@ -218,6 +192,89 @@ object SimulatorMainForm: TSimulatorMainForm
         Caption = 'FADER'
         OnClick = btnUSB4FaderClick
         ExplicitWidth = 81
+      end
+      object btnUSB4Cue: TSpeedButton
+        AlignWithMargins = True
+        Left = 5
+        Top = 18
+        Width = 109
+        Height = 48
+        Align = alTop
+        AllowAllUp = True
+        GroupIndex = 38
+        Caption = 'CUE'
+        OnClick = btnUSB1CueClick
+        ExplicitLeft = 10
+        ExplicitTop = 26
+      end
+      object btnUSB4On: TSpeedButton
+        AlignWithMargins = True
+        Left = 5
+        Top = 72
+        Width = 109
+        Height = 48
+        Align = alTop
+        AllowAllUp = True
+        GroupIndex = 37
+        Caption = 'ON'
+        OnClick = btnUSB4OnClick
+        ExplicitLeft = 10
+        ExplicitTop = 80
+      end
+    end
+    object gbEncoder: TGroupBox
+      AlignWithMargins = True
+      Left = 503
+      Top = 3
+      Width = 126
+      Height = 181
+      Align = alClient
+      Caption = 'Encoder'
+      TabOrder = 4
+      ExplicitLeft = 6
+      ExplicitTop = 6
+      ExplicitWidth = 626
+      object btnEncoder: TSpeedButton
+        Tag = 25
+        AlignWithMargins = True
+        Left = 5
+        Top = 74
+        Width = 116
+        Height = 48
+        Align = alBottom
+        AllowAllUp = True
+        Caption = 'ENCODER'
+        OnMouseDown = btnPushButtonDown
+        OnMouseUp = btnPushButtonUp
+        ExplicitLeft = 0
+        ExplicitTop = 56
+      end
+      object SpeedButton2: TSpeedButton
+        AlignWithMargins = True
+        Left = 5
+        Top = 128
+        Width = 116
+        Height = 48
+        Align = alBottom
+        AllowAllUp = True
+        GroupIndex = 26
+        Caption = 'NONSTOP'
+        OnClick = btnUSB4OnClick
+        ExplicitLeft = 3
+        ExplicitTop = 136
+      end
+      object tbEncoder: TTrackBar
+        AlignWithMargins = True
+        Left = 5
+        Top = 18
+        Width = 116
+        Height = 32
+        Align = alTop
+        Max = 255
+        Frequency = 8
+        TabOrder = 0
+        OnChange = tbEncoderChange
+        ExplicitWidth = 616
       end
     end
   end
@@ -1015,7 +1072,7 @@ object SimulatorMainForm: TSimulatorMainForm
   object Timer1: TTimer
     Interval = 125
     OnTimer = Timer1Timer
-    Left = 544
-    Top = 126
+    Left = 400
+    Top = 118
   end
 end
