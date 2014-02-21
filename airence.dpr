@@ -169,6 +169,21 @@ begin
   EncoderChangeCallback := nil;
 end;
 
+procedure airenceSetReadMode(readmode: integer); cdecl; export;
+begin
+  // not implemented
+end;
+
+function airenceGetLastError: PAnsiChar; cdecl; export;
+begin
+  Result := PAnsiChar('not implemented');
+end;
+
+procedure airenceEnableLogging(value: boolean); cdecl; export;
+begin
+  // not implemented
+end;
+
 exports
   airenceOpen,
   airenceClose,
@@ -181,7 +196,10 @@ exports
   airenceSetControlSignalChangeCB,
   airenceClearControlSignalChangeCB,
   airenceSetEncoderChangeCB,
-  airenceClearEncoderChangeCB;
+  airenceClearEncoderChangeCB,
+  airenceSetReadMode,
+  airenceGetLastError,
+  airenceEnableLogging;
 
 begin
   SimulatorMainForm := TSimulatorMainForm.Create(nil);
